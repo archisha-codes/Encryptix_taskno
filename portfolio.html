@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archisha Ranjan's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background: black;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 1rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(90deg, #000000, #ffffff);
+            background-size: 400% 400%;
+            animation: gradientBG 5s ease infinite;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero p {
+            margin: 1rem 0;
+        }
+
+        section {
+            padding: 2rem 2rem;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-pic {
+            display: block;
+            margin: 0 auto;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+
+        #skills ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        #skills li {
+            margin: 0.5rem 1rem;
+            background-color: #333;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .project-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .project-box {
+            flex: 1;
+            margin: 1rem;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 300px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .download-button {
+            display: block;
+            width: 200px;
+            margin: 1rem auto;
+            padding: 1rem;
+            text-align: center;
+            background-color: #ff6347;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .download-button:hover {
+            background-color: #ff4500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">★ Archisha Ranjan</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to My Portfolio</h1>
+        <p>I am a B.Tech CSE student who is very eager to learn new things and interested in adapting herself with new technology. Shows interest in understanding the advanced and evolving technology.</p>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <img src="Snapchat-1154666030.jpg" alt="Archisha Ranjan" class="profile-pic">
+        <p>Hi, I'm Archisha Ranjan. I have been coding for two years and have participated in 3-4 hackathons and poster-making competitions. My skills include C, Python, HTML, CSS, PPT, Excel, DSA using C, Figma, and more.</p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>C</li>
+            <li>Python</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>PPT</li>
+            <li>Excel</li>
+            <li>DSA using C</li>
+            <li>Figma</li>
+        </ul>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-container">
+            <div class="project-box">
+                <h3>Smart Attendance System</h3>
+                <p>The Smart Attendance System is a facial recognition-based attendance tracking solution developed to automate and streamline the attendance process. Utilizing Python's OpenCV library and machine learning algorithms, this system captures and recognizes student faces in real-time. The project aims to replace traditional attendance methods with a more efficient and accurate system. The application stores the attendance records in a database, providing easy access to attendance logs and generating reports.</p>
+            </div>
+            <div class="project-box">
+                <h3>Personal Finance Management System</h3>
+                <p>The Personal Finance Management System is a web application designed to help users manage their finances effectively. Developed using HTML, CSS, JavaScript, and a backend powered by Python and Flask, this project allows users to track their income, expenses, and savings. The application features a dashboard that displays financial summaries and visualizations, helping users understand their spending habits and make informed financial decisions. Users can categorize transactions, set budget limits, and receive alerts when they are close to exceeding their budgets.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume">
+        <h2>Resume</h2>
+        <a href="resume.pdf" class="download-button" download>Download Resume</a>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: archisha.ranjan.cs27@gmail.com</p>
+        <p>Phone: 9931431559</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Archisha Ranjan. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const snippets = [
+              
+            ];
+
+            function createSnippet(text, className) {
+                const snippet = document.createElement('div');
+                snippet.className = `code-snippet ${className}`;
+                snippet.textContent = text;
+                document.body.appendChild(snippet);
+            }
+
+            snippets.forEach((snippet, index) => {
+                createSnippet(snippet, `snippet${index + 1}`);
+            });
+        });
+    </script>
+</body>
+</html>

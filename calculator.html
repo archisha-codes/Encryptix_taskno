@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            max-width: 300px;
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #display {
+            width: 100%;
+            height: 40px;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: right;
+            padding: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            outline: none;
+        }
+
+        .keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: none;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            outline: none;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .operator {
+            background-color: #f44336;
+        }
+
+        .operator:hover {
+            background-color: #d32f2f;
+        }
+
+        .number {
+            background-color: #2196f3;
+        }
+
+        .number:hover {
+            background-color: #1976d2;
+        }
+
+        #clear {
+            background-color: #e0e0e0;
+            color: #333333;
+        }
+
+        #clear:hover {
+            background-color: #bdbdbd;
+        }
+
+        #equals {
+            background-color: #ff9800;
+        }
+
+        #equals:hover {
+            background-color: #f57c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <div class="keys">
+            <button class="operator" id="add">+</button>
+            <button class="operator" id="subtract">-</button>
+            <button class="operator" id="multiply">*</button>
+            <button class="operator" id="divide">/</button>
+            <button id="clear">C</button>
+            <button id="equals">=</button>
+            <button class="number" id="seven">7</button>
+            <button class="number" id="eight">8</button>
+            <button class="number" id="nine">9</button>
+            <button class="number" id="four">4</button>
+            <button class="number" id="five">5</button>
+            <button class="number" id="six">6</button>
+            <button class="number" id="one">1</button>
+            <button class="number" id="two">2</button>
+            <button class="number" id="three">3</button>
+            <button class="number" id="zero">0</button>
+            <button class="number" id="decimal">.</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const display = document.getElementById('display');
+            let currentInput = '';
+            let firstOperand = '';
+            let operator = '';
+            let waitingForSecondOperand = false;
+
+            function clearDisplay() {
+                display.value = '';
+                currentInput = '';
+                firstOperand = '';
+                operator = '';
+                waitingForSecondOperand = false;
+            }
+
+            function updateDisplay(value) {
+                display.value = value;
+            }
+
+            function handleNumberClick(number) {
+                if (waitingForSecondOperand) {
+                    currentInput = number;
+                    waitingForSecondOperand = false;
+                } else {
+                    currentInput += number;
+                }
+                updateDisplay(currentInput);
+            }
+
+            function handleOperatorClick(nextOperator) {
+                const inputValue = parseFloat(currentInput);
+                if (operator && waitingForSecondOperand) {
+                    operator = nextOperator;
+                    return;
+                }
+                if (firstOperand === '') {
+                    firstOperand = inputValue;
+                } else if (operator) {
+                    const result = calculate(firstOperand, inputValue, operator);
+                    currentInput = `${parseFloat(result.toFixed(7))}`;
+                    firstOperand = parseFloat(result.toFixed(7));
+                    updateDisplay(currentInput);
+                }
+                waitingForSecondOperand = true;
+                operator = nextOperator;
+            }
+
+            function calculate(firstOperand, secondOperand, operator) {
+                switch (operator) {
+                    case '+':
+                        return firstOperand + secondOperand;
+                    case '-':
+                        return firstOperand - secondOperand;
+                    case '*':
+                        return firstOperand * secondOperand;
+                    case '/':
+                        return firstOperand / secondOperand;
+                    default:
+                        return secondOperand;
+                }
+            }
+
+            document.querySelectorAll('.number').forEach(button => {
+                button.addEventListener('click', () => handleNumberClick(button.textContent));
+            });
+
+            document.querySelectorAll('.operator').forEach(button => {
+                button.addEventListener('click', () => handleOperatorClick(button.textContent));
+            });
+
+            document.getElementById('equals').addEventListener('click', () => {
+                const inputValue = parseFloat(currentInput);
+                if (firstOperand && operator) {
+                    const result = calculate(firstOperand, inputValue, operator);
+                    currentInput = `${parseFloat(result.toFixed(7))}`;
+                    firstOperand = '';
+                    operator = '';
+                    waitingForSecondOperand = false;
+                    updateDisplay(currentInput);
+                }
+            });
+
+            document.getElementById('clear').addEventListener('click', clearDisplay);
+        });
+    </script>
+</body>
+</html>
